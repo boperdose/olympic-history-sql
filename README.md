@@ -128,7 +128,6 @@ jupyter notebook athlete_events.ipynb
 | ![Verano vs Invierno](screenshots/verano_invierno.png) | Comparativa de participantes en JJOO de Verano e Invierno |
 | ![Participación femenina](screenshots/participacion_femenina.png) | Evolución de la participación de mujeres por año |
 | ![Edad por deporte](screenshots/edad_por_deporte.png) | Edad media de ganadores de oro por deporte y año |
-| ![IMC por deporte](screenshots/imc_por_deporte.png) | IMC medio por disciplina olímpica |
 | ![Evolución IMC](screenshots/evolucion_imc.png) | Evolución del IMC por deporte a lo largo de los años |
 | ![Correlación peso-altura](screenshots/correlacion_peso_altura.png) | Correlación entre peso y altura por sexo |
 
