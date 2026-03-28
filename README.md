@@ -72,7 +72,7 @@ Antes del análisis se plantearon las siguientes hipótesis, todas verificadas c
     ├── athlete_events.csv
 ```
 
-> ⚠️ Los archivos de datos **no están incluidos** en el repositorio. Ver instrucciones de descarga abajo.
+> Los archivos de datos **no están incluidos** en el repositorio. Ver instrucciones de descarga abajo.
 
 ---
 
