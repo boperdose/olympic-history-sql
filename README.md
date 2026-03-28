@@ -30,15 +30,15 @@ Análisis exploratorio de los Juegos Olímpicos desde **Atenas 1896 hasta Río 2
 
 | Indicador | Valor |
 |---|---|
-| País con más oros históricos | Estados Unidos — 1.131 |
-| País con mejor ratio de victoria | Unión Soviética — 28% |
-| Atleta con más oros | Michael Phelps — 23 |
-| Deporte con más eventos históricos | Tiro y Atletismo — 83 cada uno |
+| País con más oros históricos | Estados Unidos (1.131) |
+| País con mejor ratio de victoria | Unión Soviética (28%) |
+| Atleta con más oros | Michael Phelps (23) |
+| Deporte con más eventos históricos | Tiro y Atletismo (83 cada uno) |
 | Participación femenina en 1896 | 0% |
 | Participación femenina en 2016 | 45.5% (6.223 de 13.688 atletas) |
-| Deporte con menor IMC medio | Gimnasia rítmica — 17.3 |
-| Deporte con mayor IMC medio | Halterofilia — 27.7 |
-| Mayor diferencia de edad entre medallistas | Croquet — 43 años |
+| Deporte con menor IMC medio | Gimnasia rítmica (17.3) |
+| Deporte con mayor IMC medio | Halterofilia (27.7) |
+| Mayor diferencia de edad entre medallistas | Croquet (43 años) |
 
 Otros hallazgos destacados:
 - La **Unión Soviética** dominó la Guerra Fría con 45.9 oros por edición, pese a competir solo entre 1952 y 1988.
