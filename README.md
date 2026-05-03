@@ -65,11 +65,13 @@ Antes del análisis se plantearon las siguientes hipótesis, todas verificadas c
 
 ```
 📁 olympic-history-sql/
-├── 📓 athlete_events.ipynb     # Notebook principal con el análisis completo
+├── 📓 athlete_events.ipynb               # Análisis exploratorio con SQL
+├── 📓 modelo_predictivo_olimpiadas.ipynb  # Modelo ML de predicción de categoría deportiva
 ├── 📄 README.md
-├── 📁 screenshots/             # Visualizaciones del análisis
-└── 📁 data/                    # Archivos CSV del dataset (no incluidos)
+├── 📁 screenshots/                        # Visualizaciones del análisis
+└── 📁 data/                               # Archivos CSV del dataset (no incluidos)
     ├── athlete_events.csv
+    └── noc_regions.csv
 ```
 
 > Los archivos de datos **no están incluidos** en el repositorio. Ver instrucciones de descarga abajo.
@@ -101,12 +103,15 @@ git clone https://github.com/boperdose/olympic-history-sql.git
 cd olympic-history-sql
 
 # 2. Instala las dependencias
-pip install pandas numpy matplotlib
+pip install pandas numpy matplotlib scikit-learn
 
 # 3. Descarga los datos de Kaggle y colócalos en data/
 
-# 4. Abre el notebook
+# 4. Abre el notebook de análisis exploratorio
 jupyter notebook athlete_events.ipynb
+
+# 5. O abre el notebook de Machine Learning
+jupyter notebook modelo_predictivo_olimpiadas.ipynb
 ```
 
 ### Dependencias principales
@@ -117,6 +122,7 @@ jupyter notebook athlete_events.ipynb
 | `sqlite3` | Motor SQL para las consultas (incluido en Python) |
 | `numpy` | Operaciones numéricas |
 | `matplotlib` | Visualizaciones |
+| `scikit-learn` | Modelos de Machine Learning |
 
 ---
 
@@ -133,11 +139,75 @@ jupyter notebook athlete_events.ipynb
 
 ---
 
+## 🤖 Machine Learning — Predicción de categoría deportiva
+
+El notebook `modelo_predictivo_olimpiadas.ipynb` extiende el análisis exploratorio
+con un modelo predictivo que, dado el perfil físico de un atleta, predice
+a qué categoría deportiva pertenece.
+
+### Pregunta de investigación
+
+> *¿Es posible predecir la categoría deportiva de un atleta olímpico
+> a partir de su edad, altura, peso, sexo e IMC?*
+
+### Metodología
+
+- **Variables**: edad, altura, peso, sexo e IMC (variable derivada)
+- **Variable objetivo**: 7 categorías físicas (Resistencia, Fuerza y Potencia,
+  Coordinación Técnica, Deportes de Equipo, Velocidad y Explosividad,
+  Precisión y Control, Técnico Estratégico)
+- **Modelos comparados**: Logistic Regression (baseline) y Random Forest
+- **División de datos**: 60% train / 20% validación / 20% test
+- **Métricas**: Accuracy, F1 Macro y Top-3 Accuracy
+
+### Resultados
+
+| Modelo | Accuracy | F1 Macro |
+|---|---|---|
+| Baseline aleatorio | 0.143 | 0.143 |
+| Logistic Regression | 0.141 | 0.090 |
+| Random Forest (sin ajuste) | 0.438 | 0.402 |
+| **Random Forest (ajustado)** | **0.416** | **0.372** |
+
+El Random Forest ajustado clasifica correctamente el **41.6% de los atletas**
+frente al 14.3% de un clasificador aleatorio — una mejora de 2.9x sobre el azar.
+El ajuste de hiperparámetros redujo el overfitting de 0.202 a **0.013** de
+diferencia entre train y validación.
+
+### Hallazgos ML
+
+- El **peso, la edad y la altura** son las variables más predictivas (~23-24% cada una),
+  refutando parcialmente la hipótesis de que peso y altura dominarían sobre la edad.
+- **Coordinación Técnica y Flexibilidad** es la categoría más fácil de predecir (77%),
+  gracias al perfil físico extremo de gimnastas y patinadores artísticos.
+- **Precisión y Control** es la más difícil (22%) — en estos deportes el físico
+  no determina el rendimiento.
+- Deportes como el **Atletismo** introducen ruido al agrupar disciplinas con perfiles
+  físicos opuestos (maratoniano vs velocista) bajo el mismo nombre.
+
+### Demo interactiva
+
+El notebook incluye una función que predice las 3 categorías más probables
+para cualquier perfil físico introducido:
+
+```python
+predecir_categoria(edad=19, altura=158, peso=52, sexo="F")
+# → 1. Coordinacion Tecnica Flexibilidad  68.3%  ████████████████████████████
+# → 2. Resistencia                        12.1%  ████
+# → 3. Deportes de Equipo                  8.4%  ███
+```
+
+---
+
 ## Limitaciones
 
 - El dataset cubre hasta **Río 2016** — no incluye Tokio 2020 ni París 2024.
 - El sobreconteo en deportes de equipo ha sido mitigado usando `DISTINCT` en las queries de medallas.
 - Los datos de peso y altura tienen valores nulos significativos en ediciones anteriores a 1960.
+- La agrupación en 7 categorías físicas es una decisión subjetiva — una agrupación
+  diferente produciría resultados distintos.
+- Deportes con subcategorías físicamente heterogéneas (como el Atletismo) introducen
+  ruido en el modelo que no puede corregirse sin datos más granulares.
 
 ---
 
