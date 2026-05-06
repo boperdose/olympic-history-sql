@@ -1,4 +1,4 @@
-# 120 Años de Historia Olímpica — Análisis Exploratorio con SQL
+# 120 Años de Historia Olímpica (Análisis Exploratorio con SQL)
 
 Análisis exploratorio de los Juegos Olímpicos desde **Atenas 1896 hasta Río 2016** usando SQL y Python. El proyecto examina el desempeño deportivo por países y atletas, la evolución organizativa de los Juegos y las características físicas de los competidores a lo largo de 120 años de historia olímpica.
 
